@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # Production Rick and Morty
+  rick-and-morty-prod:
+    build:
+      context: .
+      target: dev
+    container_name: rick-and-morty-prod
+    ports:
+      - "3001:3001"
+    working_dir: /app/characters-rick-and-morty
+    command: npm run build && npm run serve
+    environment:
+      - NODE_ENV=production
+    networks:
+      - microfrontend-network
+
+  # Production Harry Potter
+  harry-potter-prod:
+    build:
+      context: .
+      target: dev
+    container_name: harry-potter-prod
+    ports:
+      - "3002:3002"
+    working_dir: /app/characters-harry-potter
+    command: npm run build && npm run serve
+    environment:
+      - NODE_ENV=production
+    networks:
+      - microfrontend-network
+    depends_on:
+      - rick-and-morty-prod
+
+  # Production Host App
+  host-app-prod:
+    build:
+      context: .
+      target: dev
+    container_name: host-app-prod
+    ports:
+      - "3000:3000"
+    working_dir: /app/host-app
+    command: npm run build && npm run serve
+    environment:
+      - NODE_ENV=production
+    networks:
+      - microfrontend-network
+    depends_on:
+      - rick-and-morty-prod
+      - harry-potter-prod
+
+networks:
+  microfrontend-network:
+    driver: bridge

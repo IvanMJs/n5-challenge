@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  rick-and-morty:
+    build:
+      context: ./characters-rick-and-morty
+    container_name: rick-and-morty
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - microfrontend-network
+
+  harry-potter:
+    build:
+      context: ./characters-harry-potter
+    container_name: harry-potter
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - microfrontend-network
+    depends_on:
+      - rick-and-morty
+
+  host-app:
+    build:
+      context: ./host-app
+    container_name: host-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - microfrontend-network
+    depends_on:
+      - rick-and-morty
+      - harry-potter
+
+networks:
+  microfrontend-network:
+    driver: bridge
