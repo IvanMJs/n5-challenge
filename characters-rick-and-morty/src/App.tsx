@@ -1,4 +1,5 @@
 import type React from "react"
+import "../styles/globals.css"
 import CharacterList from "./components/CharacterList/CharacterList"
 
 const App: React.FC = () => {

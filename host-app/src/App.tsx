@@ -1,8 +1,8 @@
 "use client"
 
-import "../../styles/globals.css"
+import "../styles/globals.css"
 import type React from "react"
-import { useState, Suspense, lazy } from "react"
+import { useEffect, useState, Suspense, lazy } from "react"
 import { useTranslation } from "react-i18next"
 import i18n from "./i18n"
 import { LanguageSwitcher } from "./components/UI/LanguageSwitcher/LanguageSwitcher"
@@ -14,20 +14,38 @@ const App: React.FC = () => {
   const { t } = useTranslation()
   const [showRick, setShowRick] = useState(false)
   const [showHarry, setShowHarry] = useState(false)
-  const [language, setLanguage] = useState(i18n.language)
+  const [ready, setReady] = useState(false)
+  // Estado para forzar re-render al cambiar idioma
+  const [currentLang, setCurrentLang] = useState(i18n.language)
+
+  useEffect(() => {
+    const onLangChanged = (lng: string) => setCurrentLang(lng)
+    const onInitialized = () => setReady(true)
+
+    i18n.on("languageChanged", onLangChanged)
+    i18n.on("initialized", onInitialized)
+
+    if (i18n.isInitialized) setReady(true)
+
+    return () => {
+      i18n.off("languageChanged", onLangChanged)
+      i18n.off("initialized", onInitialized)
+    }
+  }, [])
 
   const handleLanguageChange = (lang: string) => {
     i18n.changeLanguage(lang)
-    setLanguage(lang)
   }
 
+  if (!ready) return null
+
   return (
-    <div
+    <div key={i18n.language}
       style={{ minHeight: "100vh", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", padding: "20px" }}
     >
       <header style={{ textAlign: "center", color: "white", marginBottom: "40px" }}>
-        <h1 style={{ fontSize: "3rem", margin: "0 0 10px 0" }}>Explorador de Personajes Microfrontend</h1>
-        <p style={{ fontSize: "1.2rem" }}>Explora personajes de diferentes universos</p>
+        <h1 style={{ fontSize: "3rem", margin: "0 0 10px 0" }}>{t("app.title")}</h1>
+        <p style={{ fontSize: "1.2rem" }}>{t("app.subtitle")}</p>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "24px 0" }}>
           <div style={{
             background: "rgba(255,255,255,0.15)",
@@ -40,7 +58,7 @@ const App: React.FC = () => {
             fontSize: "1rem",
             color: "#fff"
           }}>
-            <LanguageSwitcher language={language} onLanguageChange={handleLanguageChange} label={t("language.switch")} />
+            <LanguageSwitcher language={i18n.language} onLanguageChange={handleLanguageChange} label={t("language.switch")} />
           </div>
         </div>
       </header>
@@ -69,7 +87,7 @@ const App: React.FC = () => {
           </div>
           {showRick && (
             <Suspense fallback={<div style={{ textAlign: "center", color: "white" }}>{t("loading")}</div>}>
-              <RickAndMortyCharacters language={language} />
+              <RickAndMortyCharacters language={i18n.language} />
             </Suspense>
           )}
         </section>
@@ -95,7 +113,7 @@ const App: React.FC = () => {
           </div>
           {showHarry && (
             <Suspense fallback={<div style={{ textAlign: "center", color: "white" }}>{t("loading")}</div>}>
-              <HarryPotterCharacters language={language} />
+              <HarryPotterCharacters language={i18n.language} />
             </Suspense>
           )}
         </section>
