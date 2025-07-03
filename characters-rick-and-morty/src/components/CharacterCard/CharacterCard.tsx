@@ -1,4 +1,4 @@
-import { CardWrapper } from "./CharacterCard.styles"
+import { Image, Content, Name, Info, InfoItem, InfoItemLabel, InfoItemValue, StatusBadge, CardWrapper } from "./CharacterCard.styles"
 import type React from "react"
 import type { Character } from "../../types"
 import { getTranslation } from "../../utils/translations"
@@ -9,38 +9,39 @@ interface CharacterCardProps {
 }
 
 export const CharacterCard: React.FC<CharacterCardProps> = ({ character, language }) => {
-  const getStatusClass = (status: string) => {
-    return `character-card__status--${status.toLowerCase()}`
-  }
-
   return (
     <CardWrapper className="character-card">
-      <img
-        src={character.image || "/placeholder.svg"}
-        alt={character.name}
-        className="character-card__image"
-        loading="lazy"
-      />
-      <div className="character-card__content">
-        <h3 className="character-card__name">{character.name}</h3>
-        <div className="character-card__info">
-          <div className="character-card__info-item">
-            <span className="character-card__info-item-label">{getTranslation("character.status", language)}:</span>
-            <span className={`character-card__status ${getStatusClass(character.status)}`}>{character.status}</span>
-          </div>
-          <div className="character-card__info-item">
-            <span className="character-card__info-item-label">{getTranslation("character.species", language)}:</span>
-            <span className="character-card__info-item-value">{character.species}</span>
-          </div>
-          <div className="character-card__info-item">
-            <span className="character-card__info-item-label">{getTranslation("character.gender", language)}:</span>
-            <span className="character-card__info-item-value">{character.gender}</span>
-          </div>
-          <div className="character-card__info-item">
-            <span className="character-card__info-item-label">{getTranslation("character.origin", language)}:</span>
-            <span className="character-card__info-item-value">{character.origin.name}</span>
-          </div>
-        </div>
+      <div className="character-card__container">
+        <Image
+          src={character.image || "/placeholder.svg"}
+          alt={character.name}
+          loading="lazy"
+        />
+        <Content>
+          <Name>{character.name}</Name>
+          <Info>
+            <InfoItem>
+              <InfoItemLabel>{getTranslation("character.status", language)}:</InfoItemLabel>
+              <InfoItemValue>
+                <StatusBadge status={character.status}>{character.status}</StatusBadge>
+              </InfoItemValue>
+            </InfoItem>
+            <InfoItem>
+              <InfoItemLabel>{getTranslation("character.species", language)}:</InfoItemLabel>
+              <InfoItemValue>{character.species}</InfoItemValue>
+            </InfoItem>
+            <InfoItem>
+              <InfoItemLabel>{getTranslation("character.gender", language)}:</InfoItemLabel>
+              <InfoItemValue>{character.gender}</InfoItemValue>
+            </InfoItem>
+            {character.origin?.name && (
+              <InfoItem>
+                <InfoItemLabel>{getTranslation("character.origin", language)}:</InfoItemLabel>
+                <InfoItemValue>{character.origin.name}</InfoItemValue>
+              </InfoItem>
+            )}
+          </Info>
+        </Content>
       </div>
     </CardWrapper>
   )

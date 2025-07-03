@@ -48,11 +48,12 @@ describe("CharacterCard Component", () => {
     expect(image).toHaveAttribute("src", mockCharacter.image)
   })
 
-  it("applies correct house class for Gryffindor", () => {
+  it("applies correct house style for Gryffindor", () => {
     render(<CharacterCard character={mockCharacter} language="en" />)
 
     const houseElement = screen.getByText("Gryffindor")
-    expect(houseElement).toHaveClass("character-card__house--gryffindor")
+    // El color de fondo para Gryffindor es #740001
+    expect(houseElement).toHaveStyle({ backgroundColor: "#740001" })
   })
 
   it("displays translations in Spanish", () => {

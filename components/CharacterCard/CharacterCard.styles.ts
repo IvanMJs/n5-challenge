@@ -5,18 +5,18 @@ export const CardWrapper = styled.div`
   &.character-card {
     /* Efecto de fondo y borde */
     .character-card__container {
-      backdrop-filter: blur(16px);
-      background: rgba(255,255,255,0.1);
-      border-radius: 1.5rem;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: radial-gradient(ellipse at 60% 60%, rgba(162,89,247,0.32) 0%, rgba(58,198,253,0.18) 60%, rgba(162,89,247,0.12) 100%);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      box-shadow: 0 6px 32px 0 rgba(44,19,56,0.13);
+      border: 2px solid rgba(177,143,255,0.7);
       overflow: hidden;
       transition: box-shadow 0.5s, transform 0.5s, border 0.5s;
       position: relative;
       &:hover, &.character-card--hovered {
         box-shadow: 0 8px 32px 0 rgba(128, 90, 213, 0.2);
         transform: scale(1.05);
-        border-color: rgba(255,255,255,0.4);
+        border-color: #b18fff;
       }
     }
     .character-card__image {

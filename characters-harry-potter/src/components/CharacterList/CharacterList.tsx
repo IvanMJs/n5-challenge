@@ -3,22 +3,8 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import { ListWrapper } from "./CharacterList.styles"
-
-interface Character {
-  id: string
-  name: string
-  house: string
-  actor: string
-  wizard: boolean
-  image: string
-  species: string
-  gender: string
-  dateOfBirth: string
-  ancestry: string
-  eyeColour: string
-  hairColour: string
-  patronus: string
-}
+import { CharacterCard } from "../CharacterCard/CharacterCard"
+import type { Character } from "../../types"
 
 interface Props {
   language: string
@@ -57,10 +43,28 @@ const CharacterList: React.FC<Props> = ({ language }) => {
           .filter((char: any) => char.image && char.image.trim() !== "")
           .slice(0, 12)
           .map((char: any) => ({
-            ...char,
             id: char.id || char.name,
-          }))
-        setCharacters(filtered)
+            name: char.name || "",
+            alternate_names: char.alternate_names || [],
+            species: char.species || "",
+            gender: char.gender || "",
+            house: char.house || "",
+            dateOfBirth: char.dateOfBirth || null,
+            yearOfBirth: char.yearOfBirth || null,
+            wizard: char.wizard || false,
+            ancestry: char.ancestry || "",
+            eyeColour: char.eyeColour || "",
+            hairColour: char.hairColour || "",
+            wand: char.wand || { wood: "", core: "", length: null },
+            patronus: char.patronus || "",
+            hogwartsStudent: char.hogwartsStudent || false,
+            hogwartsStaff: char.hogwartsStaff || false,
+            actor: char.actor || "",
+            alternate_actors: char.alternate_actors || [],
+            alive: typeof char.alive === "boolean" ? char.alive : true,
+            image: char.image || "",
+          })) as Character[];
+        setCharacters(filtered);
       } catch (error) {
         console.error("Error fetching characters:", error)
         setError("Failed to load characters")
@@ -91,55 +95,7 @@ const CharacterList: React.FC<Props> = ({ language }) => {
     <ListWrapper className="character-list">
       <div className="character-list__grid">
         {characters.map((character) => (
-          <div
-            key={character.id}
-            className="character-list__card"
-          >
-            <img
-              src={character.image || "/placeholder.svg"}
-              alt={character.name}
-              className="character-list__image"
-            />
-            <div className="character-list__content">
-              <h3 className="character-list__name">{character.name}</h3>
-              <div className="character-list__info">
-                {character.house && (
-                  <div>
-                    <strong>House:</strong>{" "}
-                    <span>{character.house}</span>
-                  </div>
-                )}
-                {character.actor && (
-                  <div>
-                    <strong>Actor:</strong>{" "}
-                    <span>{character.actor}</span>
-                  </div>
-                )}
-                <div>
-                  <strong>Wizard:</strong>{" "}
-                  <span>{character.wizard ? "Yes" : "No"}</span>
-                </div>
-                {character.species && (
-                  <div>
-                    <strong>Species:</strong>{" "}
-                    <span>{character.species}</span>
-                  </div>
-                )}
-                {character.ancestry && (
-                  <div>
-                    <strong>Ancestry:</strong>{" "}
-                    <span>{character.ancestry}</span>
-                  </div>
-                )}
-                {character.patronus && (
-                  <div>
-                    <strong>Patronus:</strong>{" "}
-                    <span>{character.patronus}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          <CharacterCard key={character.id} character={character} language={language} />
         ))}
       </div>
     </ListWrapper>

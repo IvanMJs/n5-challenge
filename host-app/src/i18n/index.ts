@@ -5,8 +5,8 @@ import LanguageDetector from "i18next-browser-languagedetector"
 const resources = {
   en: {
     translation: {
-      "app.title": "Microfrontend Character Explorer",
-      "app.subtitle": "Explore characters from different universes",
+      "app.title": "Character Universe Explorer",
+      "app.subtitle": "Discover amazing characters from your favorite universes",
       "language.switch": "Switch Language",
       "characters.rickAndMorty": "Rick and Morty Characters",
       "characters.harryPotter": "Harry Potter Characters",
@@ -18,8 +18,8 @@ const resources = {
   },
   es: {
     translation: {
-      "app.title": "Explorador de Personajes Microfrontend",
-      "app.subtitle": "Explora personajes de diferentes universos",
+      "app.title": "Explorador de Universos de Personajes",
+      "app.subtitle": "Descubre personajes increíbles de tus universos favoritos",
       "language.switch": "Cambiar Idioma",
       "characters.rickAndMorty": "Personajes de Rick y Morty",
       "characters.harryPotter": "Personajes de Harry Potter",

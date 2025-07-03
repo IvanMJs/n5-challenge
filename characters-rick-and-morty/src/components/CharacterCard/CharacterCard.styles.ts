@@ -1,71 +1,91 @@
 import styled from "styled-components"
 
 export const CardWrapper = styled.div`
+  position: relative;
   &.character-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: 3px solid #e5e7eb;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 350px;
-    margin: 0 auto;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    &__image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-    }
-
-    &__content {
-      padding: 16px;
-      width: 100%;
-    }
-
-    &__name {
-      margin: 0 0 12px 0;
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #333;
-      text-align: center;
-    }
-
-    &__info {
-      font-size: 0.9rem;
-      color: #666;
-      line-height: 1.5;
-    }
-
-    &__info-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-
-    &__info-item-label {
-      font-weight: 500;
-    }
-
-    &__status--alive {
-      color: #28a745;
-    }
-
-    &__status--dead {
-      color: #dc3545;
-    }
-
-    &__status--unknown {
-      color: #ffc107;
+    .character-card__container {
+      background: radial-gradient(ellipse at 60% 60%, rgba(255,224,102,0.18) 0%, rgba(243,87,168,0.32) 60%, rgba(162,89,247,0.12) 100%);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      box-shadow: 0 6px 32px 0 rgba(44,19,56,0.13);
+      border: 2px solid rgba(177,143,255,0.7);
+      overflow: hidden;
+      transition: box-shadow 0.5s, transform 0.5s, border 0.5s;
+      position: relative;
+      &:hover, &.character-card--hovered {
+        box-shadow: 0 8px 32px 0 rgba(128, 90, 213, 0.2);
+        transform: scale(1.05);
+        border-color: #b18fff;
+      }
     }
   }
+`
+
+export const Image = styled.img`
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+`
+
+export const Content = styled.div`
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`
+
+export const Name = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+`
+
+export const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+`
+
+export const InfoItem = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+`
+
+export const InfoItemLabel = styled.span`
+  font-weight: 600;
+  color: #bcbcd1;
+  min-width: 80px;
+  margin-right: 8px;
+`
+
+export const InfoItemValue = styled.span`
+  color: #fff;
+  flex: 1;
+`
+
+export const StatusBadge = styled.span<{ status?: string }>`
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: ${({ status }) => {
+    switch (status?.toLowerCase()) {
+      case "alive":
+        return "linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)";
+      case "dead":
+        return "linear-gradient(90deg, #ff5858 0%, #f09819 100%)";
+      default:
+        return "linear-gradient(90deg, #bcbcd1 0%, #e0e0e0 100%)";
+    }
+  }};
+  color: #fff;
+  margin-left: 8px;
 `

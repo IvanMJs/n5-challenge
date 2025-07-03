@@ -9,16 +9,12 @@ export const ListWrapper = styled.div`
       gap: 24px;
     }
     .character-list__card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: 3px solid #e5e7eb;
-      &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      }
+      background: none;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      overflow: visible;
+      transition: none;
     }
     .character-list__image {
       width: 100%;

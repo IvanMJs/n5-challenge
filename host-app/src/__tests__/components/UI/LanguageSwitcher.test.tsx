@@ -1,4 +1,4 @@
-import type React from "react"
+import React from "react"
 import { render, screen, fireEvent } from "@testing-library/react"
 import { I18nextProvider } from "react-i18next"
 import i18n from "../../../i18n"
@@ -28,13 +28,25 @@ describe("LanguageSwitcher Component", () => {
   })
 
   it("changes language when option is selected", () => {
-    renderWithProviders(<LanguageSwitcher {...defaultProps} />)
+    // Wrapper con estado para simular el cambio de idioma
+    const Wrapper = () => {
+      const [lang, setLang] = React.useState("en");
+      return (
+        <LanguageSwitcher
+          language={lang}
+          onLanguageChange={setLang}
+          label="Switch Language"
+        />
+      );
+    };
 
-    const select = screen.getByDisplayValue("English")
-    fireEvent.change(select, { target: { value: "es" } })
+    renderWithProviders(<Wrapper />);
 
-    expect(select).toHaveValue("es")
-  })
+    const select = screen.getByDisplayValue("English");
+    fireEvent.change(select, { target: { value: "es" } });
+
+    expect(select).toHaveValue("es");
+  });
 
   it("renders without crashing", () => {
     renderWithProviders(<LanguageSwitcher {...defaultProps} />)

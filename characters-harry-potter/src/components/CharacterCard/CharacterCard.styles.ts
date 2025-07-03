@@ -1,20 +1,6 @@
 import styled from "styled-components"
 
-export const CardContainer = styled.div`
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
-`
+// CardContainer ya no se usa, todo el diseño va en CardWrapper con la clase BEM
 
 export const Image = styled.img`
   width: 100%;
@@ -33,7 +19,7 @@ export const Content = styled.div`
 export const Name = styled.h3`
   font-size: 1.25rem;
   font-weight: 700;
-  color: #333;
+  color: #fff;
   margin: 0 0 12px 0;
   line-height: 1.3;
 `
@@ -53,13 +39,13 @@ export const InfoItem = styled.div`
 
 export const InfoItemLabel = styled.span`
   font-weight: 600;
-  color: #666;
+  color: #bcbcd1;
   min-width: 80px;
   margin-right: 8px;
 `
 
 export const InfoItemValue = styled.span`
-  color: #333;
+  color: #fff;
   flex: 1;
 `
 
@@ -111,4 +97,25 @@ export const Badge = styled.span`
   background-color: #e3f2fd;
   color: #1565c0;
   margin-left: 4px;
+`
+
+export const CardWrapper = styled.div`
+  position: relative;
+  &.character-card {
+    .character-card__container {
+      background: radial-gradient(ellipse at 60% 60%, rgba(255,224,102,0.18) 0%, rgba(243,87,168,0.32) 60%, rgba(162,89,247,0.12) 100%);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      box-shadow: 0 6px 32px 0 rgba(44,19,56,0.13);
+      border: 2px solid rgba(177,143,255,0.7);
+      overflow: hidden;
+      transition: box-shadow 0.5s, transform 0.5s, border 0.5s;
+      position: relative;
+      &:hover, &.character-card--hovered {
+        box-shadow: 0 8px 32px 0 rgba(128, 90, 213, 0.2);
+        transform: scale(1.05);
+        border-color: #b18fff;
+      }
+    }
+  }
 `

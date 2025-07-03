@@ -3,21 +3,8 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import { ListWrapper } from "./CharacterList.styles"
-
-interface Character {
-  id: number
-  name: string
-  status: string
-  species: string
-  gender: string
-  image: string
-  origin: {
-    name: string
-  }
-  location: {
-    name: string
-  }
-}
+import { CharacterCard } from "../CharacterCard/CharacterCard"
+import type { Character } from "../../types"
 
 interface Props {
   language: string
@@ -37,7 +24,23 @@ const CharacterList: React.FC<Props> = ({ language }) => {
           throw new Error("Failed to fetch characters")
         }
         const data = await response.json()
-        setCharacters(data.results?.slice(0, 12) || [])
+        const filtered = (data.results || [])
+          .slice(0, 12)
+          .map((char: any) => ({
+            id: char.id,
+            name: char.name || "",
+            status: char.status || "unknown",
+            species: char.species || "",
+            type: char.type || "",
+            gender: char.gender || "",
+            origin: char.origin || { name: "", url: "" },
+            location: char.location || { name: "", url: "" },
+            image: char.image || "",
+            episode: char.episode || [],
+            url: char.url || "",
+            created: char.created || "",
+          })) as Character[];
+        setCharacters(filtered);
       } catch (error) {
         console.error("Error fetching characters:", error)
         setError("Failed to load characters")
@@ -68,49 +71,7 @@ const CharacterList: React.FC<Props> = ({ language }) => {
     <ListWrapper className="character-list">
       <div className="character-list__grid">
         {characters.map((character) => (
-          <div
-            key={character.id}
-            className="character-list__card"
-          >
-            <img
-              src={character.image || "/placeholder.svg"}
-              alt={character.name}
-              className="character-list__image"
-            />
-            <div className="character-list__content">
-              <h3 className="character-list__name">
-                {character.name}
-              </h3>
-              <div className="character-list__info">
-                <div>
-                  <strong>Status:</strong>{" "}
-                  <span
-                    className={
-                      character.status === "Alive"
-                        ? "character-list__status--alive"
-                        : character.status === "Dead"
-                        ? "character-list__status--dead"
-                        : "character-list__status--unknown"
-                    }
-                  >
-                    {character.status}
-                  </span>
-                </div>
-                <div>
-                  <strong>Species:</strong> {character.species}
-                </div>
-                <div>
-                  <strong>Gender:</strong> {character.gender}
-                </div>
-                <div>
-                  <strong>Origin:</strong> {character.origin.name}
-                </div>
-                <div>
-                  <strong>Location:</strong> {character.location.name}
-                </div>
-              </div>
-            </div>
-          </div>
+          <CharacterCard key={character.id} character={character} language={language} />
         ))}
       </div>
     </ListWrapper>

@@ -1,0 +1,8 @@
+html body .section {
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s cubic-bezier(.4,2,.6,1);
+}
+html body .section:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 40px 0 rgba(44,19,56,0.18), 0 2px 12px rgba(0,0,0,0.10);
+  z-index: 2;
+} 
