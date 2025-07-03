@@ -1,15 +1,18 @@
 import styled from "styled-components"
 
-export const CardContainer = styled.div`
+export const CardWrapper = styled.div`
   &.character-card {
-    background: white;
+    background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 3px solid #e5e7eb;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    max-width: 350px;
+    margin: 0 auto;
 
     &:hover {
       transform: translateY(-4px);
@@ -20,72 +23,49 @@ export const CardContainer = styled.div`
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-bottom: 1px solid #eee;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
     }
 
     &__content {
       padding: 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+      width: 100%;
     }
 
     &__name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #333;
       margin: 0 0 12px 0;
-      line-height: 1.3;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
     }
 
     &__info {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.5;
     }
 
     &__info-item {
       display: flex;
-      align-items: center;
-      font-size: 0.9rem;
-
-      &-label {
-        font-weight: 600;
-        color: #666;
-        min-width: 80px;
-        margin-right: 8px;
-      }
-
-      &-value {
-        color: #333;
-        flex: 1;
-      }
+      justify-content: space-between;
+      margin-bottom: 6px;
     }
 
-    &__status {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
+    &__info-item-label {
+      font-weight: 500;
+    }
 
-      &--alive {
-        background-color: #d4edda;
-        color: #155724;
-      }
+    &__status--alive {
+      color: #28a745;
+    }
 
-      &--dead {
-        background-color: #f8d7da;
-        color: #721c24;
-      }
+    &__status--dead {
+      color: #dc3545;
+    }
 
-      &--unknown {
-        background-color: #fff3cd;
-        color: #856404;
-      }
+    &__status--unknown {
+      color: #ffc107;
     }
   }
 `

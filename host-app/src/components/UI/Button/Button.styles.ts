@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const StyledButton = styled.button`
-  &.button {
+  &&.button {
     padding: 12px 24px;
     border: none;
     border-radius: 8px;
@@ -22,7 +22,7 @@ export const StyledButton = styled.button`
       transform: translateY(0);
     }
 
-    &--secondary {
+    &&--secondary {
       background-color: #6c757d;
       
       &:hover {
@@ -30,7 +30,7 @@ export const StyledButton = styled.button`
       }
     }
 
-    &--danger {
+    &&--danger {
       background-color: #dc3545;
       
       &:hover {

@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { createContext, useContext, useState, type ReactNode } from "react"
-import { useTranslation } from "react-i18next"
+import i18n from "../i18n"
 import type { LanguageContextType } from "../types"
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -12,7 +12,6 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const { i18n } = useTranslation()
   const [language, setLanguage] = useState(i18n.language)
 
   const changeLanguage = (lang: string) => {

@@ -1,7 +1,18 @@
 import type React from "react"
 import type { Character } from "../../types"
 import { getTranslation } from "../../utils/translations"
-import { CardContainer } from "./CharacterCard.styles"
+import {
+  CardContainer,
+  Image,
+  Content,
+  Name,
+  Info,
+  InfoItem,
+  InfoItemLabel,
+  InfoItemValue,
+  House,
+  Badge
+} from "./CharacterCard.styles"
 
 interface CharacterCardProps {
   character: Character
@@ -9,73 +20,67 @@ interface CharacterCardProps {
 }
 
 export const CharacterCard: React.FC<CharacterCardProps> = ({ character, language }) => {
-  const getHouseClass = (house: string) => {
-    if (!house) return "character-card__house--default"
-    return `character-card__house--${house.toLowerCase()}`
-  }
-
   const getYesNo = (value: boolean) => {
     return getTranslation(value ? "yes" : "no", language)
   }
 
   return (
-    <CardContainer className="character-card">
-      <img
+    <CardContainer>
+      <Image
         src={character.image || "/placeholder.svg"}
         alt={character.name}
-        className="character-card__image"
         loading="lazy"
       />
-      <div className="character-card__content">
-        <h3 className="character-card__name">{character.name}</h3>
-        <div className="character-card__info">
+      <Content>
+        <Name>{character.name}</Name>
+        <Info>
           {character.house && (
-            <div className="character-card__info-item">
-              <span className="character-card__info-item-label">{getTranslation("character.house", language)}:</span>
-              <span className={`character-card__house ${getHouseClass(character.house)}`}>{character.house}</span>
-            </div>
+            <InfoItem>
+              <InfoItemLabel>{getTranslation("character.house", language)}:</InfoItemLabel>
+              <House house={character.house}>{character.house}</House>
+            </InfoItem>
           )}
-          <div className="character-card__info-item">
-            <span className="character-card__info-item-label">{getTranslation("character.species", language)}:</span>
-            <span className="character-card__info-item-value">{character.species}</span>
-          </div>
-          <div className="character-card__info-item">
-            <span className="character-card__info-item-label">{getTranslation("character.gender", language)}:</span>
-            <span className="character-card__info-item-value">{character.gender}</span>
-          </div>
+          <InfoItem>
+            <InfoItemLabel>{getTranslation("character.species", language)}:</InfoItemLabel>
+            <InfoItemValue>{character.species}</InfoItemValue>
+          </InfoItem>
+          <InfoItem>
+            <InfoItemLabel>{getTranslation("character.gender", language)}:</InfoItemLabel>
+            <InfoItemValue>{character.gender}</InfoItemValue>
+          </InfoItem>
           {character.actor && (
-            <div className="character-card__info-item">
-              <span className="character-card__info-item-label">{getTranslation("character.actor", language)}:</span>
-              <span className="character-card__info-item-value">{character.actor}</span>
-            </div>
+            <InfoItem>
+              <InfoItemLabel>{getTranslation("character.actor", language)}:</InfoItemLabel>
+              <InfoItemValue>{character.actor}</InfoItemValue>
+            </InfoItem>
           )}
-          <div className="character-card__info-item">
-            <span className="character-card__info-item-label">{getTranslation("character.wizard", language)}:</span>
-            <span className="character-card__info-item-value">
+          <InfoItem>
+            <InfoItemLabel>{getTranslation("character.wizard", language)}:</InfoItemLabel>
+            <InfoItemValue>
               {getYesNo(character.wizard)}
-              {character.wizard && <span className="character-card__badge">✨</span>}
-            </span>
-          </div>
+              {character.wizard && <Badge>✨</Badge>}
+            </InfoItemValue>
+          </InfoItem>
           {character.hogwartsStudent && (
-            <div className="character-card__info-item">
-              <span className="character-card__info-item-label">{getTranslation("character.student", language)}:</span>
-              <span className="character-card__info-item-value">
+            <InfoItem>
+              <InfoItemLabel>{getTranslation("character.student", language)}:</InfoItemLabel>
+              <InfoItemValue>
                 {getYesNo(character.hogwartsStudent)}
-                <span className="character-card__badge">🎓</span>
-              </span>
-            </div>
+                <Badge>🎓</Badge>
+              </InfoItemValue>
+            </InfoItem>
           )}
           {character.hogwartsStaff && (
-            <div className="character-card__info-item">
-              <span className="character-card__info-item-label">{getTranslation("character.staff", language)}:</span>
-              <span className="character-card__info-item-value">
+            <InfoItem>
+              <InfoItemLabel>{getTranslation("character.staff", language)}:</InfoItemLabel>
+              <InfoItemValue>
                 {getYesNo(character.hogwartsStaff)}
-                <span className="character-card__badge">👨‍🏫</span>
-              </span>
-            </div>
+                <Badge>👨‍🏫</Badge>
+              </InfoItemValue>
+            </InfoItem>
           )}
-        </div>
-      </div>
+        </Info>
+      </Content>
     </CardContainer>
   )
 }

@@ -1,7 +1,7 @@
+import { CardWrapper } from "./CharacterCard.styles"
 import type React from "react"
 import type { Character } from "../../types"
 import { getTranslation } from "../../utils/translations"
-import { CardContainer } from "./CharacterCard.styles"
 
 interface CharacterCardProps {
   character: Character
@@ -14,7 +14,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, languag
   }
 
   return (
-    <CardContainer className="character-card">
+    <CardWrapper className="character-card">
       <img
         src={character.image || "/placeholder.svg"}
         alt={character.name}
@@ -42,6 +42,6 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, languag
           </div>
         </div>
       </div>
-    </CardContainer>
+    </CardWrapper>
   )
 }

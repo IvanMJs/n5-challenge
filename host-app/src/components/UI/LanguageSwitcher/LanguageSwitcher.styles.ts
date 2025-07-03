@@ -1,35 +1,35 @@
 import styled from "styled-components"
 
 export const LanguageSwitcherContainer = styled.div`
-  &.language-switcher {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    &__label {
-      font-weight: 600;
-      color: #333;
-    }
-
-    &__select {
-      padding: 8px 12px;
-      border: 2px solid #ddd;
-      border-radius: 6px;
-      background-color: white;
-      font-size: 14px;
-      cursor: pointer;
-      transition: border-color 0.3s ease;
-
-      &:hover {
-        border-color: #007bff;
-      }
-
-      &:focus {
-        outline: none;
-        border-color: #007bff;
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-      }
-    }
+  .language-switcher__label {
+    font-weight: 600;
+    color: #fff;
+    font-size: 1rem;
+    margin-right: 8px;
+    letter-spacing: 0.5px;
   }
-`
+
+  .language-switcher__select {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.85);
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: box-shadow 0.2s, background 0.2s;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    min-width: 120px;
+  }
+  .language-switcher__select:focus {
+    box-shadow: 0 0 0 2px #764ba2;
+    background: #fff;
+  }
+`;

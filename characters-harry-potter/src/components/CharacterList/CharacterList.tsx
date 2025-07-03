@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
+import { ListWrapper } from "./CharacterList.styles"
 
 interface Character {
   id: string
@@ -87,71 +88,53 @@ const CharacterList: React.FC<Props> = ({ language }) => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          gap: "24px",
-        }}
-      >
+    <ListWrapper className="character-list">
+      <div className="character-list__grid">
         {characters.map((character) => (
           <div
             key={character.id}
-            style={{
-              background: "white",
-              borderRadius: "12px",
-              boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-              overflow: "hidden",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease",
-              border: `3px solid ${getHouseColor(character.house)}`,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-4px)"
-              e.currentTarget.style.boxShadow = "0 8px 25px rgba(0,0,0,0.15)"
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)"
-              e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)"
-            }}
+            className="character-list__card"
           >
             <img
               src={character.image || "/placeholder.svg"}
               alt={character.name}
-              style={{ width: "100%", height: "250px", objectFit: "cover" }}
+              className="character-list__image"
             />
-            <div style={{ padding: "16px" }}>
-              <h3 style={{ margin: "0 0 12px 0", fontSize: "1.25rem", fontWeight: "bold", color: "#333" }}>
-                {character.name}
-              </h3>
-              <div style={{ fontSize: "0.9rem", color: "#666", lineHeight: "1.5" }}>
+            <div className="character-list__content">
+              <h3 className="character-list__name">{character.name}</h3>
+              <div className="character-list__info">
                 {character.house && (
                   <div>
                     <strong>House:</strong>{" "}
-                    <span style={{ color: getHouseColor(character.house), fontWeight: "bold" }}>{character.house}</span>
+                    <span>{character.house}</span>
                   </div>
                 )}
                 {character.actor && (
                   <div>
-                    <strong>Actor:</strong> {character.actor}
+                    <strong>Actor:</strong>{" "}
+                    <span>{character.actor}</span>
                   </div>
                 )}
                 <div>
-                  <strong>Wizard:</strong> {character.wizard ? "Yes" : "No"}
+                  <strong>Wizard:</strong>{" "}
+                  <span>{character.wizard ? "Yes" : "No"}</span>
                 </div>
                 {character.species && (
                   <div>
-                    <strong>Species:</strong> {character.species}
+                    <strong>Species:</strong>{" "}
+                    <span>{character.species}</span>
                   </div>
                 )}
                 {character.ancestry && (
                   <div>
-                    <strong>Ancestry:</strong> {character.ancestry}
+                    <strong>Ancestry:</strong>{" "}
+                    <span>{character.ancestry}</span>
                   </div>
                 )}
                 {character.patronus && (
                   <div>
-                    <strong>Patronus:</strong> {character.patronus}
+                    <strong>Patronus:</strong>{" "}
+                    <span>{character.patronus}</span>
                   </div>
                 )}
               </div>
@@ -159,7 +142,7 @@ const CharacterList: React.FC<Props> = ({ language }) => {
           </div>
         ))}
       </div>
-    </div>
+    </ListWrapper>
   )
 }
 

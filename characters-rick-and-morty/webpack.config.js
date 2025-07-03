@@ -18,6 +18,10 @@ module.exports = {
         use: "ts-loader",
         exclude: [/node_modules/, /__tests__/],
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
     ],
   },
   plugins: [
@@ -30,6 +34,7 @@ module.exports = {
       shared: {
         react: { singleton: true, requiredVersion: "^18.2.0", eager: true },
         "react-dom": { singleton: true, requiredVersion: "^18.2.0", eager: true },
+        "react/jsx-runtime": { singleton: true, requiredVersion: "^18.2.0", eager: true },
       },
     }),
     new HtmlWebpackPlugin({

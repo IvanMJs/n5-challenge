@@ -18,7 +18,8 @@
     "start": "concurrently \"npm run start:rick\" \"npm run start:harry\" \"npm run start:host\"",
     "start:harry": "cd characters-harry-potter && npm start",
     "start:host": "cd host-app && npm start",
-    "start:rick": "cd characters-rick-and-morty && npm start"
+    "start:rick": "cd characters-rick-and-morty && npm start",
+    "preinstall": "npx npm-force-resolutions"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -55,7 +56,6 @@
     "@testing-library/dom": "latest",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
-    "autoprefixer": "^10.4.20",
     "axios": "latest",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -71,17 +71,15 @@
     "next": "15.2.4",
     "next-themes": "latest",
     "node-notifier": "latest",
-    "react": "^19",
+    "react": "^18.2.0",
     "react-day-picker": "latest",
-    "react-dom": "^19",
+    "react-dom": "^18.2.0",
     "react-hook-form": "latest",
     "react-i18next": "latest",
     "react-resizable-panels": "latest",
     "recharts": "latest",
     "sonner": "latest",
     "styled-components": "latest",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7",
     "vaul": "latest",
     "vue-tsc": "latest",
     "webpack": "latest",
@@ -91,9 +89,17 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "concurrently": "^8.2.2",
-    "postcss": "^8.5",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5"
+    "css-loader": "^7.1.2",
+    "npm-force-resolutions": "^0.0.10",
+    "postcss-loader": "^8.1.1",
+    "style-loader": "^4.0.0",
+    "typescript": "^5",
+    "wait-on": "^7.2.0"
+  },
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   }
 }

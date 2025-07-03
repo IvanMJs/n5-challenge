@@ -1,22 +1,23 @@
 "use client"
 
 import type React from "react"
-import { useTranslation } from "react-i18next"
-import { useLanguage } from "../../../contexts/LanguageContext"
 import { LanguageSwitcherContainer } from "./LanguageSwitcher.styles"
 
-export const LanguageSwitcher: React.FC = () => {
-  const { t } = useTranslation()
-  const { language, changeLanguage } = useLanguage()
+interface LanguageSwitcherProps {
+  language: string
+  onLanguageChange: (lang: string) => void
+  label: string
+}
 
+export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ language, onLanguageChange, label }) => {
   const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    changeLanguage(event.target.value)
+    onLanguageChange(event.target.value)
   }
 
   return (
     <LanguageSwitcherContainer className="language-switcher">
       <label className="language-switcher__label" htmlFor="language-select">
-        {t("language.switch")}:
+        {label}:
       </label>
       <select
         id="language-select"

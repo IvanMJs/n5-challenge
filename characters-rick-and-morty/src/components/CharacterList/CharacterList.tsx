@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
+import { ListWrapper } from "./CharacterList.styles"
 
 interface Character {
   id: number
@@ -64,50 +65,33 @@ const CharacterList: React.FC<Props> = ({ language }) => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          gap: "24px",
-        }}
-      >
+    <ListWrapper className="character-list">
+      <div className="character-list__grid">
         {characters.map((character) => (
           <div
             key={character.id}
-            style={{
-              background: "white",
-              borderRadius: "12px",
-              boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-              overflow: "hidden",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-4px)"
-              e.currentTarget.style.boxShadow = "0 8px 25px rgba(0,0,0,0.15)"
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)"
-              e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)"
-            }}
+            className="character-list__card"
           >
             <img
               src={character.image || "/placeholder.svg"}
               alt={character.name}
-              style={{ width: "100%", height: "200px", objectFit: "cover" }}
+              className="character-list__image"
             />
-            <div style={{ padding: "16px" }}>
-              <h3 style={{ margin: "0 0 12px 0", fontSize: "1.25rem", fontWeight: "bold", color: "#333" }}>
+            <div className="character-list__content">
+              <h3 className="character-list__name">
                 {character.name}
               </h3>
-              <div style={{ fontSize: "0.9rem", color: "#666", lineHeight: "1.5" }}>
+              <div className="character-list__info">
                 <div>
                   <strong>Status:</strong>{" "}
                   <span
-                    style={{
-                      color:
-                        character.status === "Alive" ? "#28a745" : character.status === "Dead" ? "#dc3545" : "#ffc107",
-                    }}
+                    className={
+                      character.status === "Alive"
+                        ? "character-list__status--alive"
+                        : character.status === "Dead"
+                        ? "character-list__status--dead"
+                        : "character-list__status--unknown"
+                    }
                   >
                     {character.status}
                   </span>
@@ -129,7 +113,7 @@ const CharacterList: React.FC<Props> = ({ language }) => {
           </div>
         ))}
       </div>
-    </div>
+    </ListWrapper>
   )
 }
 
