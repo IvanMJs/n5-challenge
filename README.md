@@ -1,6 +1,7 @@
 # 🚀 Microfrontend Character Explorer
 
 A complete microfrontend application built with React, TypeScript, Webpack Module Federation, styled-components (BEM), and i18next for internationalization.
+![n5challenge](https://github.com/user-attachments/assets/c0cc11de-61ac-4621-8c9f-623b0e406319)
 
 ---
 
