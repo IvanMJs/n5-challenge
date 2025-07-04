@@ -26,65 +26,6 @@ export const Subtitle = styled.p`
   }
 `;
 
-export const DotsBackground = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  background-image: repeating-radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.15) 2px,
-    transparent 6px
-  );
-  background-size: 40px 40px;
-`;
-
-export const HeaderBackground = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 340px;
-  z-index: 0;
-  background: linear-gradient(135deg, #3a8dde 0%, #6e4ff7 40%, #00c3ff 100%);
-  overflow: hidden;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: repeating-radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.13) 2px,
-      transparent 8px
-    );
-    background-size: 36px 36px;
-    opacity: 0.7;
-    pointer-events: none;
-  }
-`;
-
-export const SVGBackground = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  background: none;
-  svg {
-    width: 100vw;
-    height: 100%;
-    display: block;
-  }
-`;
-
 export const SVGHeaderBackground = styled.div`
   position: absolute;
   top: 0;
@@ -100,26 +41,6 @@ export const SVGHeaderBackground = styled.div`
     width: 100vw;
     max-width: 100%;
     height: 340px;
-    min-width: 100%;
-    display: block;
-  }
-`;
-
-export const SVGSectionBackground = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  max-width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  background: linear-gradient(135deg, #a259f7 0%, #7b2ff2 80%, #f357a8 100%);
-  overflow: hidden;
-  svg {
-    width: 100vw;
-    max-width: 100%;
-    height: 100%;
     min-width: 100%;
     display: block;
   }
