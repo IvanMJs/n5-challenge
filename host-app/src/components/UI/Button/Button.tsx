@@ -25,7 +25,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <StyledButton className={buttonClass} onClick={onClick} disabled={disabled}>
       {icon && <span className="button__icon" aria-hidden="true">{icon}</span>}
-      <span style={{ marginLeft: icon ? 8 : 0 }}>{children}</span>
+      {children}
     </StyledButton>
   );
 }

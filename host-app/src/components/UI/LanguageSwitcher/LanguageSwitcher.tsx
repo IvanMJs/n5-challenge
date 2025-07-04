@@ -17,7 +17,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ language, on
   return (
     <LanguageSwitcherContainer className="language-switcher">
       <label className="language-switcher__label" htmlFor="language-select" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span role="img" aria-label="language" style={{ fontSize: 20 }}>🌐</span>
+        <span role="img" aria-label="language" style={{ fontSize: 20 }}>🌍</span>
         {label}
       </label>
       <select

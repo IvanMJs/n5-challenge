@@ -30,17 +30,6 @@ const SVG_DOTS_HEADER = (
   </svg>
 );
 
-const SVG_DOTS_SECTION = (
-  <svg viewBox="0 0 1920 400" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <defs>
-      <pattern id="dots-section" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
-        <circle cx="16" cy="16" r="3" fill="white" fillOpacity="0.18" />
-      </pattern>
-    </defs>
-    <rect width="1920" height="400" fill="url(#dots-section)" />
-  </svg>
-);
-
 const App: React.FC = () => {
   const { t } = useTranslation()
   const [showRick, setShowRick] = useState(false)

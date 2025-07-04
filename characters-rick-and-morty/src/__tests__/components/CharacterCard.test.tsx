@@ -42,11 +42,14 @@ describe("CharacterCard Component", () => {
     expect(image).toHaveAttribute("src", mockCharacter.image)
   })
 
-  it("applies correct status class for alive character", () => {
+  it("applies correct style for alive character status badge", () => {
     render(<CharacterCard character={mockCharacter} language="en" />)
 
     const statusElement = screen.getByText("Alive")
-    expect(statusElement).toHaveClass("character-card__status--alive")
+    // El StatusBadge para 'Alive' tiene un background linear-gradient con #43e97b y #38f9d7
+    expect(statusElement).toHaveStyle({
+      background: expect.stringContaining("#43e97b")
+    })
   })
 
   it("displays translations in Spanish", () => {

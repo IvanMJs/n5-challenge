@@ -24,7 +24,7 @@ describe("LanguageSwitcher Component", () => {
     renderWithProviders(<LanguageSwitcher {...defaultProps} />)
 
     expect(screen.getByLabelText(/switch language/i)).toBeInTheDocument()
-    expect(screen.getByDisplayValue("English")).toBeInTheDocument()
+    expect(screen.getByDisplayValue("us English")).toBeInTheDocument()
   })
 
   it("changes language when option is selected", () => {
@@ -42,7 +42,7 @@ describe("LanguageSwitcher Component", () => {
 
     renderWithProviders(<Wrapper />);
 
-    const select = screen.getByDisplayValue("English");
+    const select = screen.getByDisplayValue("us English");
     fireEvent.change(select, { target: { value: "es" } });
 
     expect(select).toHaveValue("es");

@@ -112,6 +112,40 @@ Each project includes unit tests with Jest and React Testing Library.
 
 ---
 
+## 🧩 Design Patterns & SOLID Principles
+
+- **Microfrontends:** The architecture is based on microfrontends, allowing independence, scalability, and decoupled deployment for each domain.
+- **Separation of concerns:** Each component and hook has a single responsibility, following the SRP principle of SOLID.
+- **Open/Closed:** Components and hooks are designed to be extended via props, without modifying their base code.
+- **Dependency injection:** Microfrontends receive language and other data as props, making testing and reuse easier.
+- **Reusable components:** The UI is composed of decoupled, reusable components, following design patterns like Container/Presentational.
+- **Readability and maintainability:** The code follows clear conventions, descriptive names, and a modular structure.
+
+## ♿ Accessibility
+
+- **Semantic tags:** Semantic tags like `<header>`, `<button>`, `<label>`, `<select>`, and `<option>` are used to improve screen reader navigation.
+- **Roles and ARIA:** The language selector includes `role="img"` and `aria-label` for the icon, and buttons use `aria-label` to describe their action.
+- **Contrast and focus:** Styles ensure good text contrast and visible focus states on interactive controls.
+- **Keyboard navigation:** All controls (buttons, selectors) are accessible via keyboard.
+- **Alt text:** Character images include descriptive `alt` text with the character's name.
+
+To further improve accessibility, it is recommended to audit with tools like Lighthouse or axe and consider additional ARIA tags based on user feedback.
+
+---
+
+## 📊 Lighthouse Audit Results
+
+- **Accessibility:** 100/100 (Excellent)
+- **Performance:** 49/100 (Can be improved by optimizing images, scripts, and reducing bundle size. Some impact may be due to browser extensions.)
+- **Best Practices:** 79/100 (Good, but can be improved by following Lighthouse suggestions.)
+- **SEO:** 90/100 (Very good, minor improvements possible.)
+
+> The application achieves a perfect score in accessibility, ensuring a great experience for all users. Performance and best practices can be further improved by following Lighthouse recommendations. The audit was performed with Chrome Lighthouse; see the screenshot below for reference.
+
+![Lighthouse Accessibility 100](image.png)
+
+---
+
 ## ⚙️ Technologies Used
 
 - React 18
