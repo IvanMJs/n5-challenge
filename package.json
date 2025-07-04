@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "cd characters-rick-and-morty && npm run build && cd ../characters-harry-potter && npm run build && cd ../host-app && npm run build",
+    "build:vercel": "cd host-app && npm install && npm run build",
     "clean": "rm -rf node_modules host-app/node_modules characters-rick-and-morty/node_modules characters-harry-potter/node_modules",
     "docker:down": "docker-compose down",
     "docker:up": "docker-compose up --build",
