@@ -6,6 +6,7 @@ import { useEffect, useState, Suspense, lazy } from "react"
 import { useTranslation } from "react-i18next"
 import i18n from "./i18n"
 import { LanguageSwitcher } from "./components/UI/LanguageSwitcher/LanguageSwitcher"
+import { LanguageSwitcherContainer } from "./components/UI/LanguageSwitcher/LanguageSwitcher.styles"
 import { Title, Subtitle, DotsBackground, HeaderBackground, PaginationDots, SVGHeaderBackground, SVGSectionBackground, CardSection, ResponsiveMain, SVGBodyDotsBackground } from "./components/UI/Title/Title.styles";
 import { Button } from "./components/UI/Button/Button"
 
@@ -110,20 +111,8 @@ const App: React.FC = () => {
         </header>
 
         {/* Selector de idioma debajo del header, con buen margen antes de las secciones */}
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "120px 0 48px 0", zIndex: 3, position: "relative" }}>
-          <div style={{
-            background: "rgba(255,255,255,0.15)",
-            borderRadius: "12px",
-            padding: "12px 24px",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-            display: "flex",
-            alignItems: "center",
-            fontWeight: 600,
-            fontSize: "1rem",
-            color: "#fff"
-          }}>
-            <LanguageSwitcher language={i18n.language} onLanguageChange={handleLanguageChange} label={i18n.language === 'es' ? 'Idioma' : 'Language'} />
-          </div>
+        <div style={{ display: "flex", justifyContent: "center", margin: "120px 0 48px 0", zIndex: 3, position: "relative" }}>
+          <LanguageSwitcher language={i18n.language} onLanguageChange={handleLanguageChange} label={i18n.language === 'es' ? 'Idioma' : 'Language'} />
         </div>
 
         <ResponsiveMain>
@@ -148,7 +137,7 @@ const App: React.FC = () => {
                 letterSpacing: "-1px",
                 textShadow: "0 2px 8px rgba(44,19,56,0.10)"
               }}>
-                🛸 Rick & Morty Universe
+                🛸 {t('section.rick.title')}
               </h2>
               <div style={{
                 color: "#e3e3e3",
@@ -158,23 +147,23 @@ const App: React.FC = () => {
                 marginBottom: "22px",
                 textShadow: "0 1px 4px rgba(44,19,56,0.10)"
               }}>
-                Dive into the multiverse with Rick and Morty's crazy adventures
+                {t('section.rick.desc')}
               </div>
-            <div style={{ textAlign: "center", marginBottom: "20px" }}>
-              <Button
-                onClick={() => setShowRick(!showRick)}
-                variant={showRick ? "danger" : "rick"}
-                icon={showRick ? "👁️" : "🚀"}
-                aria-label={showRick ? t("button.hideCharacters") : t("button.showCharacters")}
-              >
-                {showRick ? t("button.hideCharacters") : t("button.showCharacters")}
-              </Button>
-            </div>
-            {showRick && (
-              <Suspense fallback={<div style={{ textAlign: "center", color: "white" }}>{t("loading")}</div>}>
-                <RickAndMortyCharacters language={i18n.language} />
-              </Suspense>
-            )}
+              <div style={{ textAlign: "center", marginBottom: "20px" }}>
+                <Button
+                  onClick={() => setShowRick(!showRick)}
+                  variant={showRick ? "danger" : "rick"}
+                  icon={showRick ? "👁️" : "🚀"}
+                  aria-label={showRick ? t("button.hideCharacters") : t("button.showCharacters")}
+                >
+                  {showRick ? t("button.hideCharacters") : t("button.showCharacters")}
+                </Button>
+              </div>
+              {showRick && (
+                <Suspense fallback={<div style={{ textAlign: "center", color: "white" }}>{t("loading")}</div>}>
+                  <RickAndMortyCharacters language={i18n.language} />
+                </Suspense>
+              )}
             </div>
           </CardSection>
 
@@ -199,7 +188,7 @@ const App: React.FC = () => {
                 letterSpacing: "-1px",
                 textShadow: "0 2px 8px rgba(44,19,56,0.10)"
               }}>
-                ⚡ Wizarding World
+                ⚡ {t('section.harry.title')}
               </h2>
               <div style={{
                 color: "#e3e3e3",
@@ -209,23 +198,23 @@ const App: React.FC = () => {
                 marginBottom: "22px",
                 textShadow: "0 1px 4px rgba(44,19,56,0.10)"
               }}>
-                Enter the magical world of Hogwarts and beyond
+                {t('section.harry.desc')}
               </div>
-            <div style={{ textAlign: "center", marginBottom: "20px" }}>
-              <Button
-                onClick={() => setShowHarry(!showHarry)}
-                variant={showHarry ? "danger" : "harry"}
-                icon={showHarry ? "👁️" : "🪄"}
-                aria-label={showHarry ? t("button.hideCharacters") : t("button.showCharacters")}
-              >
-                {showHarry ? t("button.hideCharacters") : t("button.showCharacters")}
-              </Button>
-            </div>
-            {showHarry && (
-              <Suspense fallback={<div style={{ textAlign: "center", color: "white" }}>{t("loading")}</div>}>
-                <HarryPotterCharacters language={i18n.language} />
-              </Suspense>
-            )}
+              <div style={{ textAlign: "center", marginBottom: "20px" }}>
+                <Button
+                  onClick={() => setShowHarry(!showHarry)}
+                  variant={showHarry ? "danger" : "harry"}
+                  icon={showHarry ? "👁️" : "🪄"}
+                  aria-label={showHarry ? t("button.hideCharacters") : t("button.showCharacters")}
+                >
+                  {showHarry ? t("button.hideCharacters") : t("button.showCharacters")}
+                </Button>
+              </div>
+              {showHarry && (
+                <Suspense fallback={<div style={{ textAlign: "center", color: "white" }}>{t("loading")}</div>}>
+                  <HarryPotterCharacters language={i18n.language} />
+                </Suspense>
+              )}
             </div>
           </CardSection>
         </ResponsiveMain>

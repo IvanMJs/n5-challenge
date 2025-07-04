@@ -9,7 +9,7 @@ export const Title = styled.h1`
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
     margin-bottom: 16px;
     letter-spacing: 1px;
     text-align: center;
@@ -34,8 +34,11 @@ export const DotsBackground = styled.div`
   height: 100vh;
   pointer-events: none;
   z-index: 0;
-  background-image:
-    repeating-radial-gradient(circle, rgba(255,255,255,0.15) 2px, transparent 6px);
+  background-image: repeating-radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15) 2px,
+    transparent 6px
+  );
   background-size: 40px 40px;
 `;
 
@@ -51,8 +54,15 @@ export const HeaderBackground = styled.div`
   &::before {
     content: "";
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: repeating-radial-gradient(circle, rgba(255,255,255,0.13) 2px, transparent 8px);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.13) 2px,
+      transparent 8px
+    );
     background-size: 36px 36px;
     opacity: 0.7;
     pointer-events: none;
@@ -117,10 +127,10 @@ export const SVGSectionBackground = styled.div`
 
 export const CardSection = styled.section`
   border-radius: 28px;
-  box-shadow: 0 8px 40px 0 rgba(44,19,56,0.13);
+  box-shadow: 0 8px 40px 0 rgba(44, 19, 56, 0.13);
   position: relative;
   overflow: hidden;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(16px);
   margin-bottom: 40px;
   padding: 44px 36px 36px 36px;
@@ -129,6 +139,7 @@ export const CardSection = styled.section`
   margin-right: auto;
   width: 100%;
   box-sizing: border-box;
+  transition: box-shadow 0.7s cubic-bezier(.22,1,.36,1), border 0.5s;
   @media (max-width: 1200px) {
     max-width: 98vw;
   }
@@ -140,6 +151,12 @@ export const CardSection = styled.section`
     border-radius: 18px;
     margin-bottom: 24px;
   }
+ &:hover {
+  box-shadow:
+    0 8px 48px 16px rgba(44,19,56,0.22), /* más difusa y extendida */
+    0 0px 32px 16px rgba(162,89,247,0.10);
+  border-color: #b18fff;
+}
 `;
 
 export const ResponsiveMain = styled.main`
@@ -172,7 +189,7 @@ export const PaginationDots = styled.div`
     border-radius: 50%;
     background: #ffe066;
     opacity: 1;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transition: background 0.3s;
     &.dot--active {
       background: #ffb347;
@@ -196,4 +213,4 @@ export const SVGBodyDotsBackground = styled.div`
     min-width: 100vw;
     min-height: 100vh;
   }
-`; 
+`;

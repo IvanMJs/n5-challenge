@@ -14,6 +14,10 @@ const resources = {
       "error.generic": "Something went wrong",
       "button.showCharacters": "Show Characters",
       "button.hideCharacters": "Hide Characters",
+      "section.rick.title": "Rick & Morty Universe",
+      "section.rick.desc": "Dive into the multiverse with Rick and Morty's crazy adventures",
+      "section.harry.title": "Wizarding World",
+      "section.harry.desc": "Enter the magical world of Hogwarts and beyond",
     },
   },
   es: {
@@ -27,6 +31,10 @@ const resources = {
       "error.generic": "Algo salió mal",
       "button.showCharacters": "Mostrar Personajes",
       "button.hideCharacters": "Ocultar Personajes",
+      "section.rick.title": "Universo Rick & Morty",
+      "section.rick.desc": "Sumérgete en el multiverso con las locas aventuras de Rick y Morty",
+      "section.harry.title": "Mundo Mágico",
+      "section.harry.desc": "Entra al mundo mágico de Hogwarts y más allá",
     },
   },
 }
