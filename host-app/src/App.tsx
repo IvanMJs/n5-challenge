@@ -45,6 +45,8 @@ const App: React.FC = () => {
   const { t } = useTranslation()
   const [showRick, setShowRick] = useState(false)
   const [showHarry, setShowHarry] = useState(false)
+  const [showRickLoading, setShowRickLoading] = useState(false)
+  const [showHarryLoading, setShowHarryLoading] = useState(false)
   const [ready, setReady] = useState(false)
   // Estado para forzar re-render al cambiar idioma
   const [currentLang, setCurrentLang] = useState(i18n.language)
@@ -77,6 +79,30 @@ const App: React.FC = () => {
   }
 
   if (!ready) return null
+
+  // Función para mostrar loading con delay
+  const handleShowRick = () => {
+    if (!showRick) {
+      setShowRickLoading(true)
+      setTimeout(() => {
+        setShowRick(true)
+        setShowRickLoading(false)
+      }, 3000)
+    } else {
+      setShowRick(false)
+    }
+  }
+  const handleShowHarry = () => {
+    if (!showHarry) {
+      setShowHarryLoading(true)
+      setTimeout(() => {
+        setShowHarry(true)
+        setShowHarryLoading(false)
+      }, 3000)
+    } else {
+      setShowHarry(false)
+    }
+  }
 
   return (
     <div key={i18n.language}
@@ -151,7 +177,7 @@ const App: React.FC = () => {
               </div>
               <div style={{ textAlign: "center", marginBottom: "20px" }}>
                 <Button
-                  onClick={() => setShowRick(!showRick)}
+                  onClick={handleShowRick}
                   variant={showRick ? "danger" : "rick"}
                   icon={showRick ? "👁️" : "🚀"}
                   aria-label={showRick ? t("button.hideCharacters") : t("button.showCharacters")}
@@ -159,8 +185,13 @@ const App: React.FC = () => {
                   {showRick ? t("button.hideCharacters") : t("button.showCharacters")}
                 </Button>
               </div>
-              {showRick && (
-                <Suspense fallback={<div style={{ textAlign: "center", color: "white" }}>{t("loading")}</div>}>
+              {(showRickLoading) && (
+                <div style={{ textAlign: "center", color: "white", fontSize: "1.2rem", padding: 32 }}>
+                  {t("loading.amazingCharacters")}
+                </div>
+              )}
+              {showRick && !showRickLoading && (
+                <Suspense fallback={null}>
                   <RickAndMortyCharacters language={i18n.language} />
                 </Suspense>
               )}
@@ -202,7 +233,7 @@ const App: React.FC = () => {
               </div>
               <div style={{ textAlign: "center", marginBottom: "20px" }}>
                 <Button
-                  onClick={() => setShowHarry(!showHarry)}
+                  onClick={handleShowHarry}
                   variant={showHarry ? "danger" : "harry"}
                   icon={showHarry ? "👁️" : "🪄"}
                   aria-label={showHarry ? t("button.hideCharacters") : t("button.showCharacters")}
@@ -210,8 +241,13 @@ const App: React.FC = () => {
                   {showHarry ? t("button.hideCharacters") : t("button.showCharacters")}
                 </Button>
               </div>
-              {showHarry && (
-                <Suspense fallback={<div style={{ textAlign: "center", color: "white" }}>{t("loading")}</div>}>
+              {(showHarryLoading) && (
+                <div style={{ textAlign: "center", color: "white", fontSize: "1.2rem", padding: 32 }}>
+                  {t("loading.amazingCharacters")}
+                </div>
+              )}
+              {showHarry && !showHarryLoading && (
+                <Suspense fallback={null}>
                   <HarryPotterCharacters language={i18n.language} />
                 </Suspense>
               )}

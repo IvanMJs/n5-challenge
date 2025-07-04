@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { CharacterCard } from "./CharacterCard"
+import { CharacterCard } from "../CharacterCard/CharacterCard"
 import { GridWrapper, LoadingWrapper, ErrorWrapper } from "./CharacterGrid.styles"
 
 interface Character {

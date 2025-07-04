@@ -51,14 +51,6 @@ const CharacterList: React.FC<Props> = ({ language }) => {
     fetchCharacters()
   }, [])
 
-  if (loading) {
-    return (
-      <div style={{ textAlign: "center", padding: "40px" }}>
-        <div style={{ fontSize: "18px", color: "#666" }}>Loading Rick & Morty characters...</div>
-      </div>
-    )
-  }
-
   if (error) {
     return (
       <div style={{ textAlign: "center", padding: "40px" }}>
